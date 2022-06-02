@@ -17,7 +17,7 @@ const ProductList = () => {
     console.log(products) ;
 
     useEffect(() =>{
-
+        getStoreItemData() ;
     }, []) ;
 
     return(
