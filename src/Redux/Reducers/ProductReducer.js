@@ -3,8 +3,8 @@ import { ActionTypes } from "../Constants/Action-type";
 const initialState = {
     products: [{
         id: 1,
-        title: "Shirt",
-        description : "POLO"
+        title: "POLO",
+        category : "Mens T-shirt"
     }]
 }
 
