@@ -1,23 +1,35 @@
 import React from 'react' ;
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const ProductComponent = () => {
     const products = useSelector((state) => state.allProducts.products) ;
-    const {id, title} = products[0] ;
+    const renderProductList = products.map(product => {
+        const {id, title, category, price, image} = product ;
+        return(
+            <div className='four wide column' key={id}>
+                <Link to={`/product/${id}`}>
+                    <div className='ui link cards'>
+                    <div className="card" style={{height:'500px'}}>
+                            <div className="image">
+                                <img src={image} alt={title} style={{height:'300px'}}/>
+                            </div>
+                            <div className="content">
+                                <div className="header">{title}</div>
+                                <div className='meta price'>${price}</div>
+                                <div className='meta'>{category}</div>
+                            </div>
+                        </div>
+                    </div>
+                </Link> 
+            </div>
+        ) ;
+    })
 
     return(
-        <div className='four column wide'>
-            <div className='ui link cards'>
-            <div class="card">
-                    <div class="image">
-                        <img src="https://dynamic-cdn.zenegal.store/fit-in/700x1050/products/15569/mens-polo-t-shirt-16064637890944.jpg"/>
-                    </div>
-                    <div class="content">
-                        <div class="header">{title}</div>
-                    </div>
-                </div>
-            </div> 
-        </div>
+        <>
+        {renderProductList}
+        </>
     ) ;
 }
 
