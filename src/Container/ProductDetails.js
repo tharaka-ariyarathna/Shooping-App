@@ -3,7 +3,7 @@ import React from 'react' ;
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {selectedProduct} from './../Redux/Actions/ProductActions' ;
+import {selectedProduct, removeSelectedProduct} from './../Redux/Actions/ProductActions' ;
 
 const ProductDetails = () => {
     const {productId} = useParams() ;
@@ -23,13 +23,19 @@ const ProductDetails = () => {
 
     useEffect(()=>{
         if(productId && productId !== "") fetchProduct() ;
+        return () => {
+            console.log("cleaned") ;
+            dispatch(removeSelectedProduct()) ;
+        }
         }, 
         [productId]
     ) ;
 
     return(
         <div className='ui grid container'>
-                <div className='row' >
+               {Object.keys(product).length === 0 ? (<div>
+                    Loading...
+               </div>): (<div className='row' >
                 <div className='ten wide column'>
                     <div className="ui divided items">
                         <div className="item">
@@ -54,7 +60,7 @@ const ProductDetails = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>)}
         </div>
     ) ;
 }

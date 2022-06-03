@@ -13,3 +13,9 @@ export const selectedProduct = (product) => {
         payLoad: product
     }) ;
 } ;
+
+export const removeSelectedProduct = () => {
+    return({
+        type: ActionTypes.SELECTED_PRODUCT
+    }) ;
+} ;
