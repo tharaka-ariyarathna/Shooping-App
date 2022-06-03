@@ -10,8 +10,6 @@ const ProductList = () => {
     const products = useSelector((state) => state) ;
     const dispatch = useDispatch() ;
 
-    console.log(products) ;
-
     //Getting data to app from Fake Store API
     const getStoreItemData = async() => {
         const response = await axios
